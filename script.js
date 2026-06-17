@@ -48,6 +48,21 @@ window.addEventListener(
   { passive: true }
 );
 
+const scrollDolphins = document.querySelectorAll(".scroll-dolphin");
+
+const rotateScrollDolphins = () => {
+  const rotation = window.scrollY * 0.18;
+
+  scrollDolphins.forEach((dolphin) => {
+    dolphin.style.transform = `rotate(${rotation}deg)`;
+  });
+};
+
+rotateScrollDolphins();
+window.addEventListener("scroll", rotateScrollDolphins, { passive: true });
+window.addEventListener("load", rotateScrollDolphins);
+window.addEventListener("pageshow", rotateScrollDolphins);
+
 document.querySelectorAll(".magnetic").forEach((button) => {
   button.addEventListener("pointermove", (event) => {
     const rect = button.getBoundingClientRect();

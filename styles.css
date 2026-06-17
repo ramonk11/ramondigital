@@ -76,18 +76,23 @@ img {
 
 .brand {
   justify-self: start;
-  width: 148px;
-  justify-content: center;
+  gap: 9px;
+  justify-content: flex-start;
   overflow: hidden;
-  padding: 0 12px;
+  padding: 0 15px 0 10px;
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 400;
+  white-space: nowrap;
 }
 
-.brand-logo {
-  width: 126px;
-  height: 29px;
-  object-fit: cover;
-  object-position: center;
-  mix-blend-mode: multiply;
+.brand-icon {
+  width: 28px;
+  height: 28px;
+  flex: 0 0 auto;
+  object-fit: contain;
+  transform-origin: 50% 50%;
+  will-change: transform;
 }
 
 .nav-links {
@@ -727,10 +732,10 @@ img {
   background: transparent;
   border-color: rgba(255, 255, 255, 0.18);
   box-shadow: none;
+  color: var(--white);
 }
 
-.footer .brand-logo {
-  mix-blend-mode: normal;
+.footer .brand-icon {
   filter: invert(1);
 }
 
