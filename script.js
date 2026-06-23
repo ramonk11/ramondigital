@@ -10,6 +10,7 @@ splitTargets.forEach((target) => {
     const inner = document.createElement("span");
     inner.textContent = word;
     inner.style.transitionDelay = `${Math.min(index * 26, 520)}ms`;
+    inner.style.animationDelay = `${Math.min(index * 58, 760)}ms`;
     wrapper.appendChild(inner);
     target.appendChild(wrapper);
 
@@ -17,6 +18,7 @@ splitTargets.forEach((target) => {
       target.append(" ");
     }
   });
+
 });
 
 const revealObserver = new IntersectionObserver(
@@ -31,7 +33,7 @@ const revealObserver = new IntersectionObserver(
   { threshold: 0.18, rootMargin: "0px 0px -8% 0px" }
 );
 
-document.querySelectorAll(".reveal, [data-split]").forEach((element) => {
+document.querySelectorAll(".reveal, [data-split]:not(.hero-title)").forEach((element) => {
   revealObserver.observe(element);
 });
 
