@@ -1,14 +1,18 @@
 :root {
-  --ink: #111111;
-  --muted: #666763;
-  --paper: #f7f6f1;
-  --paper-warm: #eee7d8;
+  --ink: #0f1724;
+  --muted: #5f625b;
+  --paper: #f8f5ee;
+  --paper-warm: #ece3d2;
   --white: #ffffff;
-  --line: rgba(17, 17, 17, 0.12);
-  --line-strong: rgba(17, 17, 17, 0.24);
-  --orange: #ff5b2e;
-  --blue-soft: #d8e2ff;
-  --green-soft: #dff0e4;
+  --line: rgba(15, 23, 36, 0.13);
+  --line-strong: rgba(15, 23, 36, 0.28);
+  --navy: #111827;
+  --green: #1d4d3d;
+  --green-soft: #e6efdd;
+  --orange: #ff704a;
+  --orange-deep: #e85f35;
+  --blue-soft: #e7edf9;
+  --cream: #f4ead9;
   --body: "Lato", Arial, sans-serif;
 }
 
@@ -22,7 +26,7 @@ html {
 
 body {
   margin: 0;
-  background: var(--paper);
+  background: var(--cream);
   color: var(--ink);
   font-family: var(--body);
   font-size: 16px;
@@ -123,7 +127,7 @@ img {
   justify-self: end;
   justify-content: center;
   padding: 0 18px;
-  background: var(--ink);
+  background: var(--orange);
   color: var(--white);
   font-size: 13px;
   font-weight: 900;
@@ -137,6 +141,7 @@ img {
   place-items: center;
   padding: 126px clamp(18px, 5vw, 76px) 64px;
   text-align: center;
+  background: var(--green-soft);
 }
 
 .wheel-system {
@@ -264,7 +269,7 @@ img {
 .hero-copy {
   max-width: 680px;
   margin: 28px auto 0;
-  color: var(--muted);
+  color: rgba(15, 23, 36, 0.72);
   font-size: clamp(17px, 1.6vw, 22px);
   line-height: 1.58;
 }
@@ -311,7 +316,7 @@ img {
 }
 
 .button-dark {
-  background: var(--ink);
+  background: var(--navy);
   color: var(--white);
 }
 
@@ -351,8 +356,19 @@ img {
   grid-template-columns: minmax(0, 0.86fr) minmax(320px, 0.78fr);
   gap: clamp(34px, 7vw, 96px);
   align-items: start;
-  border-top: 1px solid var(--line);
-  background: var(--white);
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  background: var(--navy);
+  color: var(--white);
+}
+
+.intro .section-copy p,
+.intro .service-row p {
+  color: rgba(255, 255, 255, 0.68);
+}
+
+.intro .service-list,
+.intro .service-row {
+  border-color: rgba(255, 255, 255, 0.16);
 }
 
 .section-copy {
@@ -415,7 +431,7 @@ img {
 .process {
   position: relative;
   overflow: hidden;
-  background: var(--paper);
+  background: var(--white);
 }
 
 .wheel-process {
@@ -449,23 +465,24 @@ img {
   display: grid;
   align-content: space-between;
   gap: 24px;
-  border: 1px solid var(--line);
+  border: 1px solid transparent;
   border-radius: 4px;
-  background: var(--white);
+  background: var(--navy);
   padding: 26px;
+  color: var(--white);
   transition: transform 260ms ease, box-shadow 260ms ease, background 260ms ease;
 }
 
 .process-card:nth-child(1) {
-  background: var(--paper-warm);
+  background: var(--navy);
 }
 
 .process-card:nth-child(2) {
-  background: var(--blue-soft);
+  background: var(--green);
 }
 
 .process-card:nth-child(3) {
-  background: var(--green-soft);
+  background: var(--orange);
 }
 
 .process-card:hover {
@@ -475,13 +492,17 @@ img {
 
 .process-card span {
   display: block;
-  color: var(--muted);
+  color: rgba(255, 255, 255, 0.74);
   font-size: 13px;
   font-weight: 900;
 }
 
+.process-card p {
+  color: rgba(255, 255, 255, 0.76);
+}
+
 .cases {
-  background: var(--white);
+  background: var(--cream);
   border-top: 1px solid var(--line);
 }
 
@@ -504,9 +525,10 @@ img {
   grid-template-rows: minmax(360px, 1fr) auto;
   border: 1px solid var(--line);
   border-radius: 4px;
-  background: var(--paper);
+  background: var(--white);
   overflow: hidden;
   transition: transform 320ms ease, box-shadow 320ms ease;
+  will-change: transform;
 }
 
 .case-card-large {
@@ -547,8 +569,9 @@ img {
 .case-media {
   display: grid;
   place-items: center;
-  background: var(--paper-warm);
+  background: var(--blue-soft);
   padding: clamp(22px, 4vw, 48px);
+  overflow: hidden;
 }
 
 .case-card-small .case-media {
@@ -556,32 +579,39 @@ img {
 }
 
 .case-card-wide .case-media {
-  background: var(--blue-soft);
+  background: var(--green);
 }
 
 .case-media img {
   width: 100%;
   filter: drop-shadow(0 22px 30px rgba(17, 17, 17, 0.14));
+  transform: translateY(var(--media-shift, 0px)) scale(calc(1 + var(--scroll-progress, 0) * 0.018));
   transition: transform 520ms ease;
 }
 
 .case-card:hover .case-media img {
-  transform: scale(1.035);
+  transform: translateY(var(--media-shift, 0px)) scale(1.035);
 }
 
 .case-info {
   display: grid;
-  gap: 10px;
+  gap: 9px;
   padding: 24px;
   border-top: 1px solid var(--line);
   background: var(--white);
+}
+
+.case-info span {
+  color: var(--orange-deep);
+  font-size: 13px;
+  font-weight: 900;
 }
 
 .statement {
   position: relative;
   overflow: hidden;
   padding: clamp(86px, 12vw, 158px) clamp(18px, 5vw, 76px);
-  background: var(--ink);
+  background: var(--green);
   color: var(--white);
   text-align: center;
 }
@@ -661,8 +691,8 @@ img {
   border: 1px solid var(--line);
   border-radius: 999px;
   padding: 0 14px;
-  background: var(--white);
-  color: var(--muted);
+  background: var(--green-soft);
+  color: var(--green);
   font-size: 13px;
   font-weight: 900;
 }
@@ -674,7 +704,8 @@ img {
   grid-template-columns: minmax(0, 1fr) auto;
   gap: 28px;
   align-items: end;
-  background: var(--white);
+  background: var(--navy);
+  color: var(--white);
   border-top: 1px solid var(--line);
 }
 
@@ -705,13 +736,13 @@ img {
 .cta-copy p {
   max-width: 720px;
   margin: 24px 0 0;
-  color: var(--muted);
+  color: rgba(255, 255, 255, 0.68);
   font-size: clamp(16px, 1.45vw, 20px);
   line-height: 1.62;
 }
 
 .cta-copy a {
-  color: var(--ink);
+  color: var(--white);
   font-weight: 900;
   text-decoration: underline;
   text-decoration-color: var(--orange);
@@ -747,6 +778,14 @@ img {
   font-size: 13px;
 }
 
+.scroll-motion.in-view {
+  transform: translate3d(0, var(--scroll-y, 0px), 0) rotate(var(--scroll-rotate, 0deg));
+}
+
+.case-card.in-view {
+  transform: translate3d(0, var(--scroll-y, 0px), 0);
+}
+
 .reveal {
   opacity: 0;
   transform: translateY(22px);
@@ -755,7 +794,15 @@ img {
 
 .reveal.in-view {
   opacity: 1;
-  transform: translateY(0);
+  transform: translate3d(0, var(--scroll-y, 0px), 0) rotate(var(--scroll-rotate, 0deg));
+}
+
+.process-card.in-view:hover {
+  transform: translate3d(0, calc(var(--scroll-y, 0px) - 6px), 0) rotate(var(--scroll-rotate, 0deg));
+}
+
+.case-card.in-view:hover {
+  transform: translate3d(0, calc(var(--scroll-y, 0px) - 8px), 0);
 }
 
 [data-split] .word {

@@ -48,6 +48,32 @@ window.addEventListener(
   { passive: true }
 );
 
+const scrollMotionItems = document.querySelectorAll(".process-card, .case-card");
+
+const updateScrollMotion = () => {
+  const viewportHeight = window.innerHeight || 1;
+
+  scrollMotionItems.forEach((element, index) => {
+    const rect = element.getBoundingClientRect();
+    const center = rect.top + rect.height / 2;
+    const distance = (center - viewportHeight / 2) / (viewportHeight * 0.82);
+    const clamped = Math.max(-1, Math.min(1, distance));
+    const progress = 1 - Math.min(1, Math.abs(clamped));
+    const isCase = element.classList.contains("case-card");
+    const direction = index % 2 === 0 ? 1 : -1;
+
+    element.style.setProperty("--scroll-progress", progress.toFixed(3));
+    element.style.setProperty("--scroll-y", `${(clamped * (isCase ? 26 : 18)).toFixed(2)}px`);
+    element.style.setProperty("--scroll-rotate", `${(clamped * direction * (isCase ? 0 : 1.1)).toFixed(2)}deg`);
+    element.style.setProperty("--media-shift", `${(clamped * -24).toFixed(2)}px`);
+  });
+};
+
+updateScrollMotion();
+window.addEventListener("scroll", updateScrollMotion, { passive: true });
+window.addEventListener("resize", updateScrollMotion);
+window.addEventListener("load", updateScrollMotion);
+
 const scrollDolphins = document.querySelectorAll(".scroll-dolphin");
 
 const rotateScrollDolphins = () => {
